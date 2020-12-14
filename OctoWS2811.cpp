@@ -250,7 +250,7 @@ void OctoWS2811::isr(void)
 int OctoWS2811::busy(void)
 {
 	if (update_in_progress) return 1;
-	// busy for 50 (or 300 for ws2813) us after the done interrupt, for WS2811 reset
+	// busy for 300 us after the done interrupt, for WS2811 reset
 	if (micros() - update_completed_at < 300) return 1;
 	return 0;
 }
@@ -262,7 +262,7 @@ void OctoWS2811::show(void)
 	while (update_in_progress) ;
 	//Serial1.print("2");
 	// it's ok to copy the drawing buffer to the frame buffer
-	// during the 50us WS2811 reset time
+	// during the 300us WS281X reset time
 	if (drawBuffer != frameBuffer) {
 		// TODO: this could be faster with DMA, especially if the
 		// buffers are 32 bit aligned... but does it matter?
