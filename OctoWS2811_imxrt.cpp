@@ -251,7 +251,7 @@ void OctoWS2811::show(void)
 	while (!dma3.complete()) ; // wait
 
 	// it's ok to copy the drawing buffer to the frame buffer
-	// during the 50us WS2811 reset time
+	// during the 300us WS281X reset time
 	if (drawBuffer != frameBuffer) {
 		memcpy(frameBuffer, drawBuffer, numbytes * numpins);
 	}
